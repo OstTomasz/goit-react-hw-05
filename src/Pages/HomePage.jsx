@@ -3,7 +3,7 @@ import { MovieList } from "../components/MovieList";
 export const HomePage = () => {
   return (
     <div>
-      HomePage
+      <h1>Trending today</h1>
       <MovieList />
     </div>
   );

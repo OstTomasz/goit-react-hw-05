@@ -11,43 +11,31 @@ const options = {
   },
 };
 export const fetchMovies = async () => {
-  const response = await axios
-    .get(`/trending/movie/day`, options)
-    .catch((err) => console.error(err));
+  const response = await axios.get(`/trending/movie/day`, options);
   return response.data.results;
 };
 
 export const searchMovies = async (query) => {
-  const response = await axios
-    .get(`/search/movie?query=${query}`, options)
-    .catch((err) => console.error(err));
+  const response = await axios.get(`/search/movie?query=${query}`, options);
   return response.data.results;
 };
 
 export const fetchMovieDetails = async (id) => {
-  const response = await axios
-    .get(`/movie/${id}`, options)
-    .catch((err) => console.error(err));
+  const response = await axios.get(`/movie/${id}`, options);
   return response.data;
 };
 
 export const fetchMovieCredits = async (id) => {
-  const response = await axios
-    .get(`/movie/${id}/credits`, options)
-    .catch((err) => console.error(err));
+  const response = await axios.get(`/movie/${id}/credits`, options);
   return response.data;
 };
 
 export const fetchMovieReviews = async (id) => {
-  const response = await axios
-    .get(`/movie/${id}/reviews`, options)
-    .catch((err) => console.error(err));
+  const response = await axios.get(`/movie/${id}/reviews`, options);
   return response.data.results;
 };
 
 export const fetchMovieImg = async (id) => {
-  const response = await fetchMovieDetails(id).catch((err) =>
-    console.error(err)
-  );
-  return `https://image.tmdb.org/t/p/w500/${response.poster_path}`;
+  const response = await fetchMovieDetails(id);
+  return `https://image.tmdb.org/t/p/w342/${response.poster_path}`;
 };

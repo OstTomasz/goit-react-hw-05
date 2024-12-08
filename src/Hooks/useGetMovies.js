@@ -6,9 +6,12 @@ export const useGetMovies = () => {
 
   useEffect(() => {
     const getMovies = async () => {
-      const Movies = await fetchMovies();
-
-      setMovieList(Movies);
+      try {
+        const Movies = await fetchMovies();
+        setMovieList(Movies);
+      } catch (error) {
+        console.log(error);
+      }
     };
     getMovies();
   }, []);
