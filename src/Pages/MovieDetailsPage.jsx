@@ -1,12 +1,26 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useGetMovieDetails } from "../Hooks/useGetMovieDetalis";
 import { useGetPoster } from "../Hooks/useGetPoster";
 
 export const MovieDetailsPage = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
+
   const { movieDetails, movieGenres } = useGetMovieDetails(id);
   const poster = useGetPoster(id);
+
   const genres = movieGenres.map((genre) => genre.name);
+
+  const location = useLocation();
+
+  const handleClick = () => {
+    console.log(location.state.from.state);
+    navigate(
+      location.state.from.state !== null
+        ? `/movies/${location.state.from.search}`
+        : "/"
+    );
+  };
 
   if (movieDetails === null) {
     return <p>Loading...</p>;
@@ -14,6 +28,7 @@ export const MovieDetailsPage = () => {
 
   return (
     <div>
+      <button onClick={handleClick}>Go back</button>
       <img src={poster} alt={`${movieDetails.title} poster`} />
       <h2>{`${movieDetails.title} (${movieDetails.release_date.slice(
         0,
