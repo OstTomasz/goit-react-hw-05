@@ -19,8 +19,8 @@ export const MovieDetailsPage = () => {
         0,
         4
       )})`}</h2>
-      <span>User score: </span>
-      <span>{Math.ceil(movieDetails.popularity)}%</span>
+      <span>Average vote </span>
+      <span>{movieDetails.vote_average}/10</span>
       <h3>Overwiew</h3>
       <p>{movieDetails.overview}</p>
       <h3>Genres</h3>
