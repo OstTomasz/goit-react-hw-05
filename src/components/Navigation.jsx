@@ -1,10 +1,18 @@
-import { NavLink } from "./NavLink";
+import { NavLink } from "react-router-dom";
+
+const setActive = ({ isActive }) => {
+  return isActive ? "active" : "";
+};
 
 export const Navigation = () => {
   return (
-    <div>
-      <NavLink />
-      <NavLink />
-    </div>
+    <nav>
+      <NavLink className={setActive} to="/">
+        Home
+      </NavLink>
+      <NavLink className={setActive} to="/movies">
+        Movies
+      </NavLink>
+    </nav>
   );
 };

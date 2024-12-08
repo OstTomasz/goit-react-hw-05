@@ -49,5 +49,5 @@ export const fetchMovieImg = async (id) => {
   const response = await fetchMovieDetails(id).catch((err) =>
     console.error(err)
   );
-  return `https://image.tmdb.org/t/p/w154/${response.poster_path}`;
+  return `https://image.tmdb.org/t/p/w500/${response.poster_path}`;
 };
