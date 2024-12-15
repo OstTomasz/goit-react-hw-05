@@ -1,0 +1,8 @@
+.movie-link {
+  text-decoration: none;
+  color: black;
+}
+
+.movie-link:hover {
+  color: blue;
+}

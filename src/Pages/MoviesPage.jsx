@@ -1,4 +1,4 @@
-import { Searcher } from "../components/searcher";
+import { Searcher } from "../components/Searcher/Searcher";
 
 export const MoviesPage = () => {
   return (

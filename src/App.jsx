@@ -1,11 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Navigation } from "./components/Navigation";
-import { HomePage } from "./Pages/HomePage";
-import { MovieDetailsPage } from "./Pages/MovieDetailsPage";
-import { MoviesPage } from "./Pages/MoviesPage";
-import { NotFoundPage } from "./Pages/NotFoundPage";
-import { MovieCast } from "./components/MovieCast";
-import { MovieReviews } from "./components/MovieReviews";
+
+import { Navigation } from "./components/navigation/Navigation.jsx";
+import { HomePage } from "./Pages/HomePage.jsx";
+import { MovieDetailsPage } from "./Pages/MovieDetailsPage/MovieDetailsPage.jsx";
+import { MoviesPage } from "./Pages/MoviesPage.jsx";
+import { NotFoundPage } from "./Pages/NotFoundPage.jsx";
+import { MovieCast } from "./components/MovieCast/MovieCast.jsx";
+import { MovieReview } from "./components/MovieReview/MovieReview.jsx";
 
 export const App = () => {
   return (
@@ -14,9 +15,10 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/movies" element={<MoviesPage />} />
-        <Route path="/movie/:id" element={<MovieDetailsPage />} />
-        <Route path="/movie/:id/cast" element={<MovieCast />} />
-        <Route path="/movie/:id/reviews" element={<MovieReviews />} />
+        <Route path="/movies/:id" element={<MovieDetailsPage />}>
+          <Route path="cast" element={<MovieCast />} />
+          <Route path="reviews" element={<MovieReview />} />
+        </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
