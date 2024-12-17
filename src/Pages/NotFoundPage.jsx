@@ -1,3 +1,10 @@
+import { NavLink } from "react-router-dom";
+
 export const NotFoundPage = () => {
-  return <div>Sorry, there is no page like that</div>;
+  return (
+    <div>
+      <p>Page not found!</p>
+      <NavLink to="/">Home Page</NavLink>
+    </div>
+  );
 };

@@ -1,4 +1,9 @@
-import { Link, Outlet, useLocation, useParams } from "react-router-dom";
+import {
+  Link,
+  Outlet,
+  // useLocation,
+  useParams,
+} from "react-router-dom";
 import { useGetMovieDetails } from "../../Hooks/useGetMovieDetalis";
 import { useGetPoster } from "../../Hooks/useGetPoster";
 import { GoBackButton } from "../../components/BackBtn/BackBtn";
@@ -8,14 +13,33 @@ import css from "./MovieDetailsPage.module.css";
 export const MovieDetailsPage = () => {
   const { id } = useParams();
 
-  const { movieDetails, movieGenres } = useGetMovieDetails(id);
+  const { movieDetails, movieGenres, loading, error } = useGetMovieDetails(id);
 
-  const poster = useGetPoster(id);
+  const {
+    poster,
+    loading: loadingPoster,
+    error: posterError,
+  } = useGetPoster(id);
+  const displayPoster = () => {
+    if (loadingPoster) {
+      return <p>Loading poster...</p>;
+    }
+    if (posterError) {
+      return <p>Error: Failed to load movie poster.</p>;
+    }
+    return <img src={poster} alt={`${movieDetails.title} poster`} />;
+  };
 
-  const genres = movieGenres.map((genre) => genre.name);
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+  if (error) {
+    return <p>Error: Failed to load movie details.</p>;
+  }
+  const genres = movieGenres.map((genre) => genre.name).join(" ");
 
-  const location = useLocation();
-  console.log(location);
+  // const location = useLocation();
+  // console.log(location);
 
   if (movieDetails === null) {
     return <p>Loading...</p>;
@@ -25,7 +49,7 @@ export const MovieDetailsPage = () => {
     <div className={css.wrapper}>
       <GoBackButton />
       <div className={css.movie}>
-        <img src={poster} alt={`${movieDetails.title} poster`} />
+        {displayPoster()}
         <div className={css["movie-details"]}>
           <h2 className={css.header}>{`${
             movieDetails.title
@@ -40,7 +64,7 @@ export const MovieDetailsPage = () => {
           </section>
           <section className={css.section}>
             <h3 className={css.header}>Genres</h3>
-            <span>{genres.join(" ")}</span>
+            <span>{genres}</span>
           </section>
         </div>
       </div>

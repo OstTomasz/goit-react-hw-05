@@ -4,10 +4,16 @@ import { useGetMovies } from "../../Hooks/useGetMovies";
 import css from "./MovieList.module.css";
 
 export const MovieList = () => {
-  const moviesList = useGetMovies();
+  const { moviesList, error, loading } = useGetMovies();
 
   const location = useLocation();
-  console.log(location);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+  if (error) {
+    return <p>Error: {error.message}</p>;
+  }
 
   return (
     <ul>

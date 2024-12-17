@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import { Navigation } from "./components/navigation/Navigation.jsx";
 import { HomePage } from "./Pages/HomePage.jsx";
@@ -10,7 +10,7 @@ import { MovieReview } from "./components/MovieReview/MovieReview.jsx";
 
 export const App = () => {
   return (
-    <BrowserRouter>
+    <div>
       <Navigation />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -21,6 +21,6 @@ export const App = () => {
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-    </BrowserRouter>
+    </div>
   );
 };

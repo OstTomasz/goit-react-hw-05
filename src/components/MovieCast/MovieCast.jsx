@@ -5,10 +5,14 @@ import css from "./MovieCast.module.css";
 
 export const MovieCast = () => {
   const { id } = useParams();
-  const movieCast = useGetMovieCredits(id);
+  const { movieCast, loading, error } = useGetMovieCredits(id);
 
-  if (movieCast === null) {
+  if (loading) {
     return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: Failed to load movie cast</p>;
   }
 
   return (
@@ -19,6 +23,7 @@ export const MovieCast = () => {
             src={`https://image.tmdb.org/t/p/w154/${profile_path}`}
             alt={`${name} portrait`}
           />
+
           <p>{name}</p>
           <span>Character: {character}</span>
         </li>

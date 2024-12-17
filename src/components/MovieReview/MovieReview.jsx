@@ -5,10 +5,18 @@ import css from "./MovieReview.module.css";
 
 export const MovieReview = () => {
   const { id } = useParams();
-  const movieReviews = useGetMovieReviews(id);
+  const { movieReviews, loading, error } = useGetMovieReviews(id);
 
-  if (movieReviews === null) {
+  if (movieReviews.length === 0) {
     return <p>There is no reviews for this movie.</p>;
+  }
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: Failed to load movie reviews</p>;
   }
 
   return (
