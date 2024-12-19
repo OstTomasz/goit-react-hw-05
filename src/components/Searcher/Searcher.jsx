@@ -1,26 +1,25 @@
-import { useState } from "react";
-// import { useSearch } from "../../Hooks/useSearch";
+import { Field, Form, Formik } from "formik";
 import css from "./Searcher.module.css";
 
-export const Searcher = () => {
-  const [query, setQuery] = useState();
-  // const search = useSearch(query);
-
-  // const handleChange = (e) => {
-  //   setQuery(e.target.value);
-  // };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(e.target.value)
+export const Searcher = ({ searchMovie }) => {
+  const initialValues = {
+    search: "",
+  };
+  const handleSubmit = (values, actions) => {
+    actions.resetForm({ values: { search: "" } });
+    searchMovie(values.search.trim());
   };
   return (
-    <form className={css.form} onSubmit={handleSubmit}>
-      <input
-        className={css.input}
-        // onChange={handleChange}
-        type="text"
-      ></input>
-      <button type="submit">Search</button>
-    </form>
+    <Formik initialValues={{ initialValues }} onSubmit={handleSubmit}>
+      <Form autoComplete="off">
+        <Field
+          className={css.input}
+          name="search"
+          type="text"
+          placeholder="Search..."
+        />
+        <button type="submit">Search</button>
+      </Form>
+    </Formik>
   );
 };
