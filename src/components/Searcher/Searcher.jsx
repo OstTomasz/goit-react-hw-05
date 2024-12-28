@@ -12,7 +12,7 @@ export const Searcher = ({ searchMovie }) => {
     if (values.search) {
       searchMovie(values.search.trim());
       setSearchParams({ search: values.search.trim() });
-      console.log(`search params: ${searchParams}`);
+
       actions.resetForm({ values: { search: "" } });
     } else {
       console.log("enter smth");
