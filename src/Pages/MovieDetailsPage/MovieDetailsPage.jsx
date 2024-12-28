@@ -1,9 +1,4 @@
-import {
-  Link,
-  Outlet,
-  // useLocation,
-  useParams,
-} from "react-router-dom";
+import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import { useGetMovieDetails } from "../../Hooks/useGetMovieDetalis";
 import { useGetPoster } from "../../Hooks/useGetPoster";
 import { GoBackButton } from "../../components/BackBtn/BackBtn";
@@ -12,6 +7,9 @@ import css from "./MovieDetailsPage.module.css";
 
 export const MovieDetailsPage = () => {
   const { id } = useParams();
+
+  const location = useLocation();
+  console.log(location.state);
 
   const { movieDetails, movieGenres, loading, error } = useGetMovieDetails(id);
 
@@ -37,9 +35,6 @@ export const MovieDetailsPage = () => {
     return <p>Error: Failed to load movie details.</p>;
   }
   const genres = movieGenres.map((genre) => genre.name).join(" ");
-
-  // const location = useLocation();
-  // console.log(location);
 
   if (movieDetails === null) {
     return <p>Loading...</p>;
@@ -72,10 +67,10 @@ export const MovieDetailsPage = () => {
         <h3>Additional information</h3>
         <ul>
           <li>
-            <Link to={`/movies/${id}/cast`}>Cast</Link>
+            <Link to={`cast`}>Cast</Link>
           </li>
           <li>
-            <Link to={`/movies/${id}/reviews`}>Reviews</Link>
+            <Link to={`reviews`}>Reviews</Link>
           </li>
         </ul>
       </section>

@@ -5,11 +5,9 @@ import css from "./MovieList.module.css";
 export const MovieList = ({ moviesList }) => {
   const location = useLocation();
 
-  // console.log(location);
+  console.log(location);
 
-  return moviesList.length === 0 ? (
-    <p>Movies not found</p>
-  ) : (
+  return (
     <ul>
       {moviesList.map(({ id, title }) => (
         <li key={id}>

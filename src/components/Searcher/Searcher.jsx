@@ -14,7 +14,10 @@ export const Searcher = ({ searchMovie }) => {
       setSearchParams({ search: values.search.trim() });
       console.log(`search params: ${searchParams}`);
       actions.resetForm({ values: { search: "" } });
-    } else console.log("enter smth");
+    } else {
+      console.log("enter smth");
+      setSearchParams();
+    }
   };
   return (
     <Formik initialValues={{ initialValues }} onSubmit={handleSubmit}>
