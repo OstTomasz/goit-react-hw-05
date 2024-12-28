@@ -9,7 +9,6 @@ export const MovieDetailsPage = () => {
   const { id } = useParams();
 
   const location = useLocation();
-  console.log(location.state);
 
   const { movieDetails, movieGenres, loading, error } = useGetMovieDetails(id);
 
@@ -67,10 +66,14 @@ export const MovieDetailsPage = () => {
         <h3>Additional information</h3>
         <ul>
           <li>
-            <Link to={`cast`}>Cast</Link>
+            <Link state={{ from: location }} to={`cast`}>
+              Cast
+            </Link>
           </li>
           <li>
-            <Link to={`reviews`}>Reviews</Link>
+            <Link state={{ from: location }} to={`reviews`}>
+              Reviews
+            </Link>
           </li>
         </ul>
       </section>
