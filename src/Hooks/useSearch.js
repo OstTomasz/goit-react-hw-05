@@ -12,7 +12,6 @@ export const useSearch = () => {
       const movies = await searchMovies(query);
       setSearch(movies);
       setError(false);
-      console.log(movies);
     } catch (error) {
       setError(true);
       console.log(error.message);
