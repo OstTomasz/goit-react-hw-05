@@ -7,7 +7,7 @@ const LazyHomePage = lazy(() =>
 );
 const LazyMoviesPage = lazy(() =>
   import("./Pages/MoviesPage").then((module) => ({
-    default: module["HomePage"],
+    default: module["MoviesPage"],
   }))
 );
 const LazyMovieDetailsPage = lazy(() =>
