@@ -39,6 +39,8 @@ export const MovieDetailsPage = () => {
     return <p>Loading...</p>;
   }
 
+  const backLink = location.state?.from || "/";
+
   return (
     <div className={css.wrapper}>
       <GoBackButton />
@@ -66,12 +68,12 @@ export const MovieDetailsPage = () => {
         <h3>Additional information</h3>
         <ul>
           <li>
-            <Link state={{ from: location }} to={`cast`}>
+            <Link to="cast" state={{ from: backLink }}>
               Cast
             </Link>
           </li>
           <li>
-            <Link state={{ from: location }} to={`reviews`}>
+            <Link to="reviews" state={{ from: backLink }}>
               Reviews
             </Link>
           </li>

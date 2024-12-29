@@ -7,11 +7,8 @@ export const GoBackButton = () => {
   const navigate = useNavigate();
 
   const handleBack = () => {
-    if (location.state.from.state) {
-      navigate(location.state.from.state.from);
-    } else {
-      navigate(-1);
-    }
+    const from = location.state?.from || "/";
+    navigate(from);
   };
 
   return (

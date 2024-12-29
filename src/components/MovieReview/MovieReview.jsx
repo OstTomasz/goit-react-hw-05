@@ -7,12 +7,12 @@ export const MovieReview = () => {
   const { id } = useParams();
   const { movieReviews, loading, error } = useGetMovieReviews(id);
 
-  if (movieReviews.length === 0) {
-    return <p>There is no reviews for this movie.</p>;
-  }
-
   if (loading) {
     return <p>Loading...</p>;
+  }
+
+  if (movieReviews.length === 0) {
+    return <p>There is no reviews for this movie.</p>;
   }
 
   if (error) {
